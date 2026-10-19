@@ -10,7 +10,7 @@ Lasso handwriting on a reMarkable Paper Pro, tap a button, get the result from a
 | Computer | Windows 10/11, x64 |
 | Model | Any vision model in LM Studio (GGUF with mmproj). Suggested: Gemma 4 26B-A4B or E4B |
 | Model folder | LM Studio models folder (default `%USERPROFILE%\.lmstudio\models`), set in the dashboard |
-| Link | USB (10.11.99.x, Windows OpenSSH client). Optional Wi-Fi via Tailscale Funnel |
+| Link | USB (10.11.99.x, Windows OpenSSH client). Optional Wi-Fi via Tailscale Funnel, off by default ([WIFI.md](WIFI.md)) |
 | LaTeX | tectonic (downloaded on first run), PyMuPDF |
 | Math | SymPy |
 | Plots | matplotlib |
@@ -42,7 +42,9 @@ Popups close on tap or after 30 s.
    ```
 
    Start menu: Snip2TeX. Dashboard: pick the models folder and model.
-3. Tablet (USB, xovi installed with qt-resource-rebuilder, qt-command-executor, framebuffer-spy, xovi-message-broker):
+3. Before anything on the tablet: back up its root SSH password. It is under Settings > General > Help > Copyrights and licenses (developer mode on). Store it somewhere off the tablet (password manager). You need it to install, to get back in over SSH if the key stops working, and to recover if xovi leaves the tablet in a bad state. It changes after a factory reset.
+
+   Tablet (USB, xovi installed with qt-resource-rebuilder, qt-command-executor, framebuffer-spy, xovi-message-broker):
 
    ```powershell
    uv run install_tablet.py
@@ -62,7 +64,7 @@ xovi does not survive a tablet reboot. While the tablet is plugged in, the app r
 | Selection padding | 5 px |
 | Popup auto-hide | 30 s |
 | Stay awake with lid closed | off (power plan lid action, restored on quit and at 15% battery) |
-| Wi-Fi mode | off (Tailscale Funnel, token-protected, tablet endpoints only) |
+| Wi-Fi mode | off (Tailscale Funnel, token-protected, tablet endpoints only). Setup: [WIFI.md](WIFI.md) |
 
 ## Files
 
