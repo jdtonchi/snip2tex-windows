@@ -7,6 +7,12 @@ Windows: the model runs in LM Studio (model.py). Rendering uses tectonic +
 PyMuPDF. Run with `uv run snip2tex.py`, or the tray app (app.py).
 """
 import base64, json, os, shutil, subprocess, sys, tempfile, threading, time, uuid, webbrowser
+
+# Windows consoles default to a legacy code page; results like "≈" or "→"
+# would crash print() there
+for _stream in (sys.stdout, sys.stderr):
+    if _stream is not None and hasattr(_stream, "reconfigure"):
+        _stream.reconfigure(encoding="utf-8", errors="replace")
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
