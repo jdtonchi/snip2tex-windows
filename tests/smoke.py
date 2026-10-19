@@ -90,6 +90,16 @@ def windows_only():
 
 check("server", server)
 check("remote listener needs token", remote_listener)
+
+
+def setup_api():
+    with urllib.request.urlopen("http://127.0.0.1:18799/api/setup", timeout=10) as r:
+        st = json.load(r)
+    assert {"needed", "reachable", "running", "log"} <= set(st), st
+    return f"needed={st['needed']}, tablet reachable={st['reachable']}"
+
+
+check("setup API", setup_api)
 check("framebuffer upload", framebuffer)
 check("LaTeX render", lambda: png_ok(snip2tex.render_png(r"\[ \frac{a}{b} + \sqrt{x^2} \]")))
 check("solution render", lambda: png_ok(snip2tex.render_png(tutor.solution_latex(

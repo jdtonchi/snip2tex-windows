@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "reMarkable Paper Pro lasso to a local vision model in LM Studio, Windows"
 requires-python = ">=3.12,<3.14"
 dependencies = [
+    "paramiko",
     "pillow",
     "sympy",
     "lark",
