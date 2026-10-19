@@ -1,0 +1,11 @@
+name: windows
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  smoke:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - run: uv run python -c "import app, power, snip2tex, remote, tablet, diagrams, tutor, model"
+      - run: uv run python tests/smoke.py
